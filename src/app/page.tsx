@@ -73,16 +73,22 @@ export default function Home() {
 
         <div className="bg-[#0c4da2] text-white">
           <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-6 md:flex-row md:items-center md:justify-between">
-            <div className="flex flex-1 items-center gap-5">
-              <div className="relative h-16 w-[220px] md:h-20 md:w-[260px]">
-                <Image
-                  src="/ms.webp"
-                  alt="Logotipo do Governo de Mato Grosso do Sul"
-                  fill
-                  className="object-contain"
-                  sizes="(min-width: 768px) 260px, 220px"
-                  priority
-                />
+            <div className="flex flex-1 items-center gap-6 md:gap-8">
+              <div className="relative flex h-full min-h-[96px] items-stretch md:min-h-[112px]">
+                <div className="absolute left-1/2 top-[-8px] hidden h-5 w-8 -translate-x-1/2 transform rounded-t-full bg-white md:block" aria-hidden />
+                <div className="relative z-10 flex h-24 w-16 shrink-0 items-center justify-center rounded-b-[3rem] bg-white shadow-[0_20px_45px_-25px_rgba(12,77,162,0.55)] md:h-28 md:w-20">
+                  <div className="relative h-16 w-16 md:h-20 md:w-20">
+                    <Image
+                      src="/ms.webp"
+                      alt="Brasao do Governo de Mato Grosso do Sul"
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 768px) 80px, 64px"
+                      priority
+                      style={{ objectPosition: "left center" }}
+                    />
+                  </div>
+                </div>
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-bold leading-tight md:text-2xl">ms.gov.br</span>
