@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Home() {
   const quickLinks = [
     { label: "Conteudo", href: "#" },
@@ -74,8 +76,15 @@ export default function Home() {
         <div className="bg-[#0c4da2] text-white">
           <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-6 md:flex-row md:items-center md:justify-between">
             <div className="flex flex-1 items-center gap-5">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-white/70 text-lg font-semibold uppercase">
-                MS
+              <div className="relative h-16 w-[220px] md:h-20 md:w-[260px]">
+                <Image
+                  src="/ms.webp"
+                  alt="Logotipo do Governo de Mato Grosso do Sul"
+                  fill
+                  className="object-contain"
+                  sizes="(min-width: 768px) 260px, 220px"
+                  priority
+                />
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-bold leading-tight md:text-2xl">ms.gov.br</span>
