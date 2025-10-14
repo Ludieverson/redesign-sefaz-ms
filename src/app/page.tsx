@@ -24,7 +24,15 @@ export default function Home() {
     { label: "LinkedIn", abbr: "in", href: "#" },
   ];
 
-  const primaryNav = ["Inicio", "A SEFAZ", "Governo", "Servicos", "Comunicacao", "Servidor", "Fale Conosco"];
+  const primaryNav = [
+    "Inicio",
+    "A SEFAZ",
+    "Governo",
+    "Servicos",
+    "Comunicacao",
+    "Servidor",
+    "Fale Conosco",
+  ];
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
