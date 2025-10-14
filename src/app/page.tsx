@@ -24,17 +24,7 @@ export default function Home() {
     { label: "LinkedIn", abbr: "in", href: "#" },
   ];
 
-  const primaryNav = [
-    "Inicio",
-    "A SEFAZ",
-    "Governo",
-    "Servicos",
-    "Transparencia Fiscal",
-    "Programas e Projetos",
-    "Comunicacao",
-    "Servidor",
-    "Fale Conosco",
-  ];
+  const primaryNav = ["Inicio", "A SEFAZ", "Governo", "Servicos", "Comunicacao", "Servidor", "Fale Conosco"];
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
@@ -123,7 +113,7 @@ export default function Home() {
 
         <nav className="bg-white">
           <div className="mx-auto max-w-6xl px-4">
-            <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 py-4 text-sm font-semibold uppercase tracking-wide text-slate-700">
+            <ul className="flex flex-nowrap items-center justify-center gap-x-6 py-4 text-sm font-semibold uppercase tracking-wide text-slate-700">
               {primaryNav.map((item, index) => (
                 <li key={item} className="flex items-center gap-6">
                   <a href="#" className="transition hover:text-[#0c4da2]">
