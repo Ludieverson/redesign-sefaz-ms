@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import type { ReactElement } from "react";
 import {
   ArrowLeft,
@@ -17,8 +17,11 @@ import {
   UserMinus,
   UserPlus,
   Wallet,
+  MapPin,
+  Globe,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { LuSearch } from "react-icons/lu";
 import AccessibilityButton from "@/components/AccessibilityButton";
 
 function BannerCarousel({
@@ -30,6 +33,15 @@ function BannerCarousel({
 
   const prev = () => setCurrent((index) => (index - 1 + banners.length) % banners.length);
   const next = () => setCurrent((index) => (index + 1) % banners.length);
+  useEffect(() => {
+    if (banners.length <= 1) {
+      return;
+    }
+    const timer = setInterval(() => {
+      setCurrent((index) => (index + 1) % banners.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [banners.length]);
 
   if (banners.length === 0) {
     return null;
@@ -94,33 +106,12 @@ function BannerCarousel({
 
 export default function Home() {
   const quickLinks = [
-    { label: "Conteúdo", href: "#", icon: null },
-    { label: "Menu", href: "#", icon: null },
-    { label: "Busca", href: "#", icon: null },
-    { label: "Ouvidoria/SIC", href: "#", icon: "ouvidoria" },
-    { label: "Transparência", href: "#", icon: "transparencia" },
+    { label: "Conteúdo", href: "#" },
+    { label: "Menu", href: "#" },
+    { label: "Busca", href: "#" },
+    { label: "Ouvidoria/SIC", href: "#" },
+    { label: "Transparência", href: "#" },
   ];
-
-  const externalLinkIcon = (
-    <svg
-      className="h-3 w-3"
-      viewBox="0 0 12 12"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M3.5 3C3.22386 3 3 3.22386 3 3.5C3 3.77614 3.22386 4 3.5 4V3ZM8.5 3.5H9C9 3.22386 8.77614 3 8.5 3V3.5ZM8 8.5C8 8.77614 8.22386 9 8.5 9C8.77614 9 9 8.77614 9 8.5H8ZM2.64645 3.64645C2.45118 3.84171 2.45118 4.15829 2.64645 4.35355C2.84171 4.54882 3.15829 4.54882 3.35355 4.35355L2.64645 3.64645ZM3.5 4H8.5V3H3.5V4ZM8 3.5V8.5H9V3.5H8ZM3.35355 4.35355L8.85355 -1.14645L8.14645 -1.85355L2.64645 3.64645L3.35355 4.35355Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-
-  const quickLinkIcons: Record<string, ReactElement> = {
-    ouvidoria: externalLinkIcon,
-    transparencia: externalLinkIcon,
-  };
-
-  const utilityLinks = [{ label: "Siga @GovernoMS", href: "#" }];
 
   const socialLinks = [
     { label: "Facebook", abbr: "fb", href: "#" },
@@ -184,12 +175,11 @@ export default function Home() {
 
   const primaryNav = [
     "Início",
-    "A SEFAZ",
-    "Governo",
+    "Institucional",
     "Serviços",
     "Programas e Projetos",
     "Informativos",
-    "Servidor",
+    "Sistemas",
     "Fale Conosco",
   ];
 
@@ -242,48 +232,151 @@ export default function Home() {
     },
   ];
 
-  const highlightCards = [
+  const highlightCards: Array<{
+    title: string;
+    description: string;
+    href: string;
+    icon: LucideIcon;
+    govBadge?: boolean;
+    autoBadge?: boolean;
+  }> = [
     {
       title: "e-Fazenda",
       description: "Portal completo de serviços digitais da SEFAZ.",
       href: "#",
+      icon: ClipboardList,
+      govBadge: true,
     },
     {
       title: "Documento de Arrecadação - DAEMS",
       description: "Emita e pague seu documento com rapidez.",
       href: "#",
+      icon: FileText,
     },
     {
       title: "Inscrição Estadual",
       description: "Cadastre ou atualize os dados da sua IE.",
       href: "#",
+      icon: UserPlus,
     },
     {
       title: "IPVA",
       description: "Consulte valores, datas e parcelamentos disponíveis.",
       href: "#",
+      icon: Car,
+      autoBadge: true,
     },
     {
       title: "Documentos Fiscais Eletrônicos",
       description: "Acesse NF-e, NFC-e, CT-e e outros documentos.",
       href: "#",
+      icon: FileMinus,
     },
     {
       title: "ITCD",
       description: "Saiba como declarar a transmissão causa mortis ou doação.",
       href: "#",
+      icon: ClipboardCheck,
+      autoBadge: true,
     },
     {
       title: "Autoparcelamento",
       description: "Negocie débitos e acompanhe suas parcelas online.",
       href: "#",
+      icon: Wallet,
     },
     {
       title: "Substituição Tributária",
       description: "Confirme tabelas e obrigações atualizadas.",
       href: "#",
+      icon: Search,
     },
   ];
+
+  const partnerOrganizations = [
+    {
+      name: "Educação Fiscal",
+      description: "Programa Estadual de Educação Fiscal.",
+      href: "#",
+    },
+    {
+      name: "Nota MS Premiada",
+      description: "Programa de incentivo Nota MS Premiada.",
+      href: "#",
+    },
+    {
+      name: "COGEF",
+      description: "Comissão de Gestão Fazendária.",
+      href: "#",
+    },
+    {
+      name: "PGE",
+      description: "Procuradoria-Geral do Estado.",
+      href: "#",
+    },
+    {
+      name: "CGE",
+      description: "Controladoria-Geral do Estado.",
+      href: "#",
+    },
+    {
+      name: "CGU",
+      description: "Controladoria-Geral da União.",
+      href: "#",
+    },
+    {
+      name: "Sintegra",
+      description: "Sistema Integrado de Informações sobre Operações Interestaduais.",
+      href: "#",
+    },
+    {
+      name: "Sindifiscal MS",
+      description: "Sindicato dos Fiscais Tributários de Mato Grosso do Sul.",
+      href: "#",
+    },
+    {
+      name: "Sindifisco MS",
+      description: "Sindicato dos Auditores Fiscais do Estado.",
+      href: "#",
+    },
+    {
+      name: "Portal MS",
+      description: "Portal oficial do Governo de Mato Grosso do Sul.",
+      href: "#",
+    },
+  ];
+
+  const partnerCarouselRef = useRef<HTMLDivElement>(null);
+
+  const scrollPartners = (direction: "left" | "right") => {
+    const container = partnerCarouselRef.current;
+    if (!container) return;
+    const card = container.querySelector<HTMLElement>("[data-partner-card]");
+    const amount = card ? card.offsetWidth + 16 : container.clientWidth * 0.75;
+    container.scrollBy({
+      left: direction === "left" ? -amount : amount,
+      behavior: "smooth",
+    });
+  };
+
+  const footerLinks = [
+    { label: "LGPD", href: "#" },
+    { label: "FALA SERVIDOR", href: "#" },
+    { label: "ACESSIBILIDADE", href: "#" },
+    { label: "ORDEM CRONOLÓGICA DE PAGAMENTOS", href: "#" },
+    { label: "PLANOS DE CONTRATAÇÕES ANUAIS", href: "#" },
+  ];
+
+  const footerContact = {
+    title: "Procuradoria-Geral do Estado",
+    address: [
+      "Av. Des. José Nunes da Cunha s/n, Bloco 4",
+      "Parque dos Poderes - Campo Grande | MS",
+      "CEP.: 79031-310",
+    ],
+    mapLabel: "Mapa",
+    mapHref: "#",
+  };
 
   return (
     <div className="min-h-screen bg-surface-muted text-text-body">
@@ -293,40 +386,23 @@ export default function Home() {
             <div className="flex items-center gap-sm">
               <span className="font-semibold text-text-subtle">Ir para:</span>
               <nav className="flex items-center text-xs">
-                {quickLinks.map((link, index) => {
-                  const icon = link.icon ? quickLinkIcons[link.icon] : null;
-
-                  return (
-                    <Fragment key={link.label}>
-                      <a
-                        href={link.href}
-                        className="flex items-center gap-1 px-xs hover:text-text-heading first:pl-0"
-                      >
-                        {icon}
-                        {link.label}
-                      </a>
-                      {index < quickLinks.length - 1 ? (
-                        <span
-                          className="hidden h-3 w-px bg-border-subtle md:mx-2xs md:block"
-                          aria-hidden
-                        />
-                      ) : null}
-                    </Fragment>
-                  );
-                })}
+                {quickLinks.map((link, index) => (
+                  <Fragment key={link.label}>
+                    <a href={link.href} className="px-xs font-medium hover:text-[#004F9F] first:pl-0">
+                      {link.label}
+                    </a>
+                    {index < quickLinks.length - 1 ? (
+                      <span
+                        className="hidden h-3 w-px bg-border-subtle md:mx-2xs md:block"
+                        aria-hidden
+                      />
+                    ) : null}
+                  </Fragment>
+                ))}
               </nav>
             </div>
             <div className="hidden items-center gap-md md:flex">
-              {utilityLinks.map((link, index) => (
-                <Fragment key={link.label}>
-                  <a href={link.href} className="flex items-center gap-2 hover:text-text-heading">
-                    <span>{link.label}</span>
-                  </a>
-                  {index < utilityLinks.length - 1 ? (
-                    <span className="hidden h-4 w-px bg-border-subtle md:block" aria-hidden />
-                  ) : null}
-                </Fragment>
-              ))}
+              <span>Siga @GovernoMS</span>
               <div className="flex items-center gap-xs">
                 {socialLinks.map((social) => {
                   const icon = socialIcons[social.abbr];
@@ -356,47 +432,35 @@ export default function Home() {
           <div className="mx-auto flex max-w-[1300px] flex-col gap-lg px-md py-lg md:flex-row md:items-center md:justify-between">
             <div className="flex flex-1 flex-col items-center gap-md md:flex-row md:items-start md:gap-md">
               <Image
-                src="/ms.webp"
+                src="/msgov.svg"
                 alt="Brasao do Governo de Mato Grosso do Sul"
                 width={240}
                 height={240}
                 priority
                 style={{ marginTop: -24 }}
               />
-              <div className="h-16 w-px bg-white/15" aria-hidden />
+              <div className="h-16 w-px translate-y-[2px] bg-white/15" aria-hidden />
               <div className="flex flex-col items-center md:items-start">
                 <span className="text-lg font-semibold uppercase tracking-wide">SEFAZ</span>
-                <span className="text-sm text-white/80">
+                <span className="inline-block -translate-y-[1px] text-sm text-white/80">
                   Secretaria de Estado de
                   <br />
                   Fazenda
                 </span>
               </div>
             </div>
-            <form className="flex w-full max-w-sm min-w-[240px] items-center overflow-hidden rounded-full bg-white pl-6 pr-3 shadow-sm transition focus-within:ring-2 focus-within:ring-[#0b5fbe] focus-within:ring-offset-2 focus-within:ring-offset-white md:w-auto">
-              <input
-                type="search"
-                placeholder="Buscar no site"
-                className="h-10 flex-1 min-w-0 bg-transparent text-sm text-slate-800 placeholder:text-slate-400 outline-none"
-              />
-              <button
-                type="submit"
-                className="grid h-10 w-10 place-items-center text-slate-600 transition hover:text-slate-800"
-                aria-label="Pesquisar no site"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-4 w-4"
+              <form className="flex w-full max-w-sm min-w-[240px] items-center overflow-hidden rounded-full bg-white pl-6 pr-3 shadow-sm transition focus-within:ring-2 focus-within:ring-[#0b5fbe] focus-within:ring-offset-2 focus-within:ring-offset-white md:w-auto">
+                <input
+                  type="search"
+                  placeholder="Buscar no site"
+                  className="h-12 flex-1 min-w-0 bg-transparent text-sm text-slate-800 placeholder:text-text-body outline-none"
+                />
+                <button
+                  type="submit"
+                  className="grid h-12 w-12 place-items-center text-text-body transition hover:text-slate-800"
+                  aria-label="Pesquisar no site"
                 >
-                  <circle cx="11" cy="11" r="7" />
-                  <path d="m20 20-3.5-3.5" />
-                </svg>
+                <LuSearch className="h-4 w-4" />
               </button>
             </form>
           </div>
@@ -429,12 +493,15 @@ export default function Home() {
       <main className="flex flex-col gap-lg py-9">
         <div className="mx-auto w-full max-w-[1300px] px-md">
           <section className="flex flex-col gap-lg pt-0">
-            <div className="flex flex-col gap-[0.375rem]">
-              <h1 className="text-xl font-semibold text-text-heading md:text-[1.5rem]">
-                Serviços em destaque
-              </h1>
-              <p className="text-sm text-text-body/90">
-                Acesse rapidamente os principais serviços oferecidos pela Secretaria de Fazenda.
+            <div className="flex flex-col gap-1">
+              <div className="flex items-center gap-3">
+                <span className="inline-flex h-3 w-3 shrink-0 rounded-full bg-[#007F31]" />
+                <h1 className="text-xl font-semibold text-text-heading md:text-[1.5rem]">
+                  Sistemas e Serviços Digitais
+                </h1>
+              </div>
+              <p className="text-sm text-text-body/90 md:text-base">
+                Acesse rapidamente os principais serviços e sistemas online.
               </p>
             </div>
             <div className="mt-1 grid gap-md sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
@@ -442,10 +509,10 @@ export default function Home() {
                 <a
                   key={title}
                   href={href}
-                  className="group flex min-h-[200px] flex-col justify-between gap-md rounded-card border border-border-muted bg-surface p-lg shadow-sm transition-colors"
+                  className="group flex flex-col justify-between gap-md rounded-card border border-border-muted bg-surface p-lg shadow-sm transition-colors"
                 >
                   <div className="flex flex-1 flex-col">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#e6f2fa] text-[#0F172A]">
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#e0f6ec] text-[#007F31]">
                       <Icon aria-hidden="true" className="size-5" />
                     </span>
                     <h2
@@ -460,7 +527,7 @@ export default function Home() {
                       {title}
                     </h2>
                   </div>
-                  <span className="mt-1 inline-flex items-center gap-2 text-sm font-medium text-[#0F172A] underline decoration-slate-300/70 decoration-[1px] underline-offset-[6px] dark:text-slate-100 group-hover:decoration-[#004F9F]/70">
+                  <span className="mt-1 inline-flex items-center gap-2 text-sm font-medium text-text-body underline decoration-slate-300/70 decoration-[1px] underline-offset-[6px] group-hover:text-[#007F31] group-hover:decoration-[#007F31]/80">
                     Acessar serviço
                     <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={1.6} />
                   </span>
@@ -470,7 +537,7 @@ export default function Home() {
             <div className="mt-2 flex justify-center pt-xs pb-[15px]">
               <a
                 href="#"
-                className="inline-flex items-center gap-3 rounded-full bg-[#004F9F] px-7 py-3.5 text-base font-semibold text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#004F9F]"
+                className="inline-flex items-center gap-3 rounded-full bg-[#007F31] px-7 py-3.5 text-base font-semibold text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#007F31]"
               >
                 <span>Ver todos os serviços</span>
                 <ArrowUpRight aria-hidden="true" className="h-5 w-5" strokeWidth={1.8} />
@@ -481,11 +548,11 @@ export default function Home() {
 
         <section className="w-full bg-white py-10">
           <div className="mx-auto flex w-full max-w-[1300px] flex-col gap-6 px-md">
-            <header className="flex flex-col gap-[0.375rem]">
+            <header className="flex flex-col gap-1">
               <h2 className="text-xl font-semibold text-text-heading md:text-[1.5rem]">
                 Campanhas em destaque
               </h2>
-              <p className="text-sm text-text-body/90">
+              <p className="text-sm text-text-body/90 md:text-base">
                 Iniciativas do Governo de Mato Grosso do Sul que merecem a sua atenção.
               </p>
             </header>
@@ -495,24 +562,30 @@ export default function Home() {
 
         <div className="mx-auto w-full max-w-[1300px] px-md">
           <section className="mt-12 flex flex-col gap-5">
-            <header className="flex flex-col gap-[0.375rem]">
-              <h2 className="text-xl font-semibold text-text-heading md:text-[1.5rem]">
-                Destaques
-              </h2>
-              <p className="text-sm text-text-body/90">
+            <header className="flex flex-col gap-1">
+              <div className="flex items-center gap-3">
+                <span className="inline-flex h-3 w-3 shrink-0 rounded-full bg-[#0C4DA2]" />
+                <h2 className="text-xl font-semibold text-text-heading md:text-[1.5rem]">
+                  Destaques
+                </h2>
+              </div>
+              <p className="text-sm text-text-body/90 md:text-base">
                 Iniciativas do Governo de Mato Grosso do Sul que merecem a sua atenção.
               </p>
             </header>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {highlightCards.map((item) => (
+            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+              {highlightCards.map(({ title, description, href, icon: Icon }) => (
                 <a
-                  key={item.title}
-                  href={item.href}
-                  className="group flex min-h-[200px] flex-col justify-between gap-md rounded-card border border-border-muted bg-surface p-lg shadow-sm transition-colors"
+                  key={title}
+                  href={href}
+                  className="group flex flex-col justify-between gap-md rounded-card border border-border-muted bg-surface p-lg shadow-sm transition-colors"
                 >
-                  <div className="flex-1 space-y-2xs">
+                  <div className="flex flex-1 flex-col">
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#E5F1FF] text-[#0C4DA2]">
+                      <Icon aria-hidden className="size-5" strokeWidth={1.8} />
+                    </span>
                     <h3
-                      className="text-base font-semibold leading-snug text-text-heading"
+                      className="mt-4 text-[15px] font-semibold leading-tight text-[#0F172A]"
                       style={{
                         display: "-webkit-box",
                         WebkitLineClamp: 3,
@@ -520,11 +593,21 @@ export default function Home() {
                         overflow: "hidden",
                       }}
                     >
-                      {item.title}
+                      {title}
                     </h3>
-                    <p className="text-sm text-text-body">{item.description}</p>
+                    <p
+                      className="mt-2 text-sm text-text-body"
+                      style={{
+                        display: "-webkit-box",
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: "vertical",
+                        overflow: "hidden",
+                      }}
+                    >
+                      {description}
+                    </p>
                   </div>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-slate-800 underline decoration-slate-300/70 decoration-[1px] underline-offset-[6px] dark:text-slate-100 group-hover:decoration-[#004F9F]/70">
+                  <span className="mt-1 inline-flex items-center gap-2 text-sm font-medium text-text-body underline decoration-slate-300/70 decoration-[1px] underline-offset-[6px] group-hover:decoration-[#004F9F]/70">
                     Acessar serviço
                     <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={1.6} />
                   </span>
@@ -533,7 +616,168 @@ export default function Home() {
             </div>
           </section>
         </div>
+
+        <section className="mt-16 w-full bg-white py-12">
+          <div className="mx-auto flex w-full max-w-[1300px] flex-col gap-8 px-md">
+            <header className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+              <div className="space-y-1">
+                <div className="flex items-center gap-3">
+                  <span className="inline-flex h-3 w-3 shrink-0 rounded-full bg-gradient-to-br from-[#FECF3B] to-[#F59E0B]" />
+                  <h2 className="text-xl font-semibold text-text-heading md:text-[1.5rem]">
+                    Instituições relacionadas
+                  </h2>
+                </div>
+                <p className="text-sm text-text-body/85 md:text-base">
+                  Conecte-se com órgãos parceiros que reforçam os serviços e iniciativas da Secretaria
+                  de Fazenda.
+                </p>
+              </div>
+              <div className="hidden sm:flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => scrollPartners("left")}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-muted bg-white text-text-body shadow-sm transition hover:text-[#004F9F]"
+                  aria-label="Ver instituições anteriores"
+                >
+                  <ArrowLeft aria-hidden className="size-5" strokeWidth={1.8} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => scrollPartners("right")}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-muted bg-white text-text-body shadow-sm transition hover:text-[#004F9F]"
+                  aria-label="Ver próximas instituições"
+                >
+                  <ArrowRight aria-hidden className="size-5" strokeWidth={1.8} />
+                </button>
+              </div>
+            </header>
+            <div className="relative">
+              <div
+                className="flex gap-4 overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                ref={partnerCarouselRef}
+              >
+                {partnerOrganizations.map(({ name, description, href }) => (
+                  <a
+                    key={name}
+                    href={href}
+                    className="flex min-w-[230px] max-w-[260px] flex-col gap-4 rounded-card border border-border-muted bg-surface p-5 shadow-sm"
+                    data-partner-card
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="inline-flex h-10 w-10 flex-none items-center justify-center rounded-full bg-[#FFF4D6] text-[#C78500]">
+                        <Globe aria-hidden className="size-5" strokeWidth={1.8} />
+                      </span>
+                      <div className="space-y-1">
+                        <h3
+                          className="text-sm font-semibold leading-snug text-[#0F172A]"
+                          style={{
+                            display: "-webkit-box",
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: "vertical",
+                            overflow: "hidden",
+                          }}
+                        >
+                          {name}
+                        </h3>
+                        <p
+                          className="text-sm text-text-body"
+                          style={{
+                            display: "-webkit-box",
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: "vertical",
+                            overflow: "hidden",
+                          }}
+                        >
+                          {description}
+                        </p>
+                      </div>
+                    </div>
+                    <span className="inline-flex items-center gap-2 text-sm font-medium text-[#0052B4] underline decoration-[#0052B4]/60 decoration-[1px] underline-offset-[6px]">
+                      Acessar site
+                      <ArrowUpRight aria-hidden className="size-4" strokeWidth={1.6} />
+                    </span>
+                  </a>
+                ))}
+              </div>
+              <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-24 bg-gradient-to-l from-white via-white/80 to-transparent sm:block" />
+            </div>
+            <div className="flex justify-center gap-3 sm:hidden">
+              <button
+                type="button"
+                onClick={() => scrollPartners("left")}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-muted bg-white text-text-body shadow-sm transition hover:text-[#004F9F]"
+                aria-label="Ver instituições anteriores"
+              >
+                <ArrowLeft aria-hidden className="size-5" strokeWidth={1.8} />
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollPartners("right")}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-muted bg-white text-text-body shadow-sm transition hover:text-[#004F9F]"
+                aria-label="Ver próximas instituições"
+              >
+                <ArrowRight aria-hidden className="size-5" strokeWidth={1.8} />
+              </button>
+            </div>
+          </div>
+        </section>
       </main>
+
+      <footer className="border-t border-border-muted bg-white">
+        <div className="bg-[#E5E7EB]">
+          <div className="mx-auto flex max-w-[1300px] flex-wrap items-center gap-x-4 gap-y-3 px-md py-4 text-sm font-semibold text-[#3F3F46]">
+            {footerLinks.map((item, index) => (
+              <Fragment key={item.label}>
+                <a
+                  href={item.href}
+                  className="transition hover:text-[#0C4DA2]"
+                >
+                  {item.label}
+                </a>
+                {index < footerLinks.length - 1 && (
+                  <span className="h-3 w-px bg-border-subtle" aria-hidden />
+                )}
+              </Fragment>
+            ))}
+          </div>
+        </div>
+
+        <div className="border-t border-border-muted">
+          <div className="mx-auto flex w-full max-w-[1300px] flex-col gap-8 px-md py-10 md:flex-row md:items-start md:justify-between">
+            <div className="space-y-3 text-sm text-text-body">
+              <h3 className="text-base font-semibold uppercase tracking-wide text-[#0F172A]">
+                {footerContact.title}
+              </h3>
+              {footerContact.address.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+              <a
+                href={footerContact.mapHref}
+                className="inline-flex items-center gap-2 text-sm font-semibold text-[#0052B4] underline decoration-[#0052B4]/60 decoration-[1px] underline-offset-[6px]"
+              >
+                {footerContact.mapLabel}
+                <MapPin aria-hidden className="size-4" strokeWidth={1.8} />
+              </a>
+            </div>
+            <div className="flex items-center justify-start md:justify-end">
+              <Image
+                src="/GOV-MS-horizontal-COLOR.png"
+                alt="Governo de Mato Grosso do Sul"
+                width={220}
+                height={60}
+                className="h-auto w-[220px]"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-[#004F9F]">
+          <p className="mx-auto max-w-[1300px] px-md py-3 text-center text-xs font-semibold uppercase tracking-wide text-white">
+            SETDIG | Secretaria-Executiva de Transformação Digital
+          </p>
+        </div>
+      </footer>
 
       <AccessibilityButton />
     </div>
