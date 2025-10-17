@@ -388,7 +388,10 @@ export default function Home() {
               <nav className="flex items-center text-xs">
                 {quickLinks.map((link, index) => (
                   <Fragment key={link.label}>
-                    <a href={link.href} className="px-xs font-medium hover:text-[#004F9F] first:pl-0">
+                    <a
+                      href={link.href}
+                      className="px-xs font-medium hover:text-[#004F9F] first:pl-0"
+                    >
                       {link.label}
                     </a>
                     {index < quickLinks.length - 1 ? (
@@ -449,17 +452,17 @@ export default function Home() {
                 </span>
               </div>
             </div>
-              <form className="flex w-full max-w-sm min-w-[240px] items-center overflow-hidden rounded-full bg-white pl-6 pr-3 shadow-sm transition focus-within:ring-2 focus-within:ring-[#0b5fbe] focus-within:ring-offset-2 focus-within:ring-offset-white md:w-auto">
-                <input
-                  type="search"
-                  placeholder="Buscar no site"
-                  className="h-12 flex-1 min-w-0 bg-transparent text-sm text-slate-800 placeholder:text-text-body outline-none"
-                />
-                <button
-                  type="submit"
-                  className="grid h-12 w-12 place-items-center text-text-body transition hover:text-slate-800"
-                  aria-label="Pesquisar no site"
-                >
+            <form className="flex w-full max-w-sm min-w-[240px] items-center overflow-hidden rounded-full bg-white pl-6 pr-3 shadow-sm transition focus-within:ring-2 focus-within:ring-[#0b5fbe] focus-within:ring-offset-2 focus-within:ring-offset-white md:w-auto">
+              <input
+                type="search"
+                placeholder="Buscar no site"
+                className="h-12 flex-1 min-w-0 bg-transparent text-sm text-slate-800 placeholder:text-text-body outline-none"
+              />
+              <button
+                type="submit"
+                className="grid h-12 w-12 place-items-center text-text-body transition hover:text-slate-800"
+                aria-label="Pesquisar no site"
+              >
                 <LuSearch className="h-4 w-4" />
               </button>
             </form>
@@ -628,8 +631,8 @@ export default function Home() {
                   </h2>
                 </div>
                 <p className="text-sm text-text-body/85 md:text-base">
-                  Conecte-se com órgãos parceiros que reforçam os serviços e iniciativas da Secretaria
-                  de Fazenda.
+                  Conecte-se com órgãos parceiros que reforçam os serviços e iniciativas da
+                  Secretaria de Fazenda.
                 </p>
               </div>
               <div className="hidden sm:flex items-center gap-3">
@@ -728,10 +731,7 @@ export default function Home() {
           <div className="mx-auto flex max-w-[1300px] flex-wrap items-center gap-x-4 gap-y-3 px-md py-4 text-sm font-semibold text-[#3F3F46]">
             {footerLinks.map((item, index) => (
               <Fragment key={item.label}>
-                <a
-                  href={item.href}
-                  className="transition hover:text-[#0C4DA2]"
-                >
+                <a href={item.href} className="transition hover:text-[#0C4DA2]">
                   {item.label}
                 </a>
                 {index < footerLinks.length - 1 && (
