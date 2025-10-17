@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Fragment, useState } from "react";
+import type { ReactElement } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -105,7 +106,7 @@ export default function Home() {
     { label: "Siga @GovernoMS", href: "#" },
   ];
 
-  const utilityIcons: Record<string, JSX.Element | undefined> = {
+  const utilityIcons: Record<string, ReactElement | undefined> = {
     Acessibilidade: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +132,7 @@ export default function Home() {
     { label: "LinkedIn", abbr: "in", href: "#" },
   ];
 
-  const socialIcons: Record<string, JSX.Element> = {
+  const socialIcons: Record<string, ReactElement> = {
     fb: (
       <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5">
         <path
