@@ -16,7 +16,7 @@ export default function VLibras() {
 
     // Verifica se já existe o script
     const existingScript = document.querySelector(
-      'script[src="https://vlibras.gov.br/app/vlibras-plugin.js"]'
+      'script[src="https://vlibras.gov.br/app/vlibras-plugin.js"]',
     );
 
     if (existingScript) {

@@ -13,19 +13,19 @@ export default function AccessibilityButton() {
 
     // Tenta encontrar o botão do VLibras, mostrá-lo e clicar nele
     setTimeout(() => {
-      const vLibrasButton = document.querySelector('[vw-access-button]') as HTMLElement;
+      const vLibrasButton = document.querySelector("[vw-access-button]") as HTMLElement;
       if (vLibrasButton) {
         // Remove o display: none para mostrar o botão
-        vLibrasButton.style.display = 'block';
+        vLibrasButton.style.display = "block";
         // Clica no botão para abrir o widget
         vLibrasButton.click();
       } else {
-        console.log('VLibras ainda não carregou. Tentando novamente...');
+        console.log("VLibras ainda não carregou. Tentando novamente...");
         // Tenta novamente após 2 segundos
         setTimeout(() => {
-          const retryButton = document.querySelector('[vw-access-button]') as HTMLElement;
+          const retryButton = document.querySelector("[vw-access-button]") as HTMLElement;
           if (retryButton) {
-            retryButton.style.display = 'block';
+            retryButton.style.display = "block";
             retryButton.click();
           }
         }, 2000);
@@ -41,8 +41,8 @@ export default function AccessibilityButton() {
         className="fixed left-6 bottom-6 text-white p-2.5 rounded-full shadow-lg transition-shadow hover:shadow-xl"
         style={{
           zIndex: 9999,
-          backgroundColor: '#004F9F',
-          cursor: 'pointer',
+          backgroundColor: "#004F9F",
+          cursor: "pointer",
         }}
       >
         <RxAccessibility className="w-8 h-8" />
@@ -79,7 +79,14 @@ export default function AccessibilityButton() {
               border: "2px solid rgba(255, 255, 255, 0.8)",
             }}
           >
-            <h2 style={{ fontSize: "24px", fontWeight: "bold", marginBottom: "24px", color: "#1e293b" }}>
+            <h2
+              style={{
+                fontSize: "24px",
+                fontWeight: "bold",
+                marginBottom: "24px",
+                color: "#1e293b",
+              }}
+            >
               Acessibilidade
             </h2>
 
@@ -116,8 +123,12 @@ export default function AccessibilityButton() {
                   e.currentTarget.style.borderColor = "#e2e8f0";
                 }}
               >
-                <Hand style={{ width: "40px", height: "40px", marginBottom: "12px", color: "#3b82f6" }} />
-                <span style={{ fontSize: "15px", fontWeight: "600", color: "#334155" }}>WebLibras</span>
+                <Hand
+                  style={{ width: "40px", height: "40px", marginBottom: "12px", color: "#3b82f6" }}
+                />
+                <span style={{ fontSize: "15px", fontWeight: "600", color: "#334155" }}>
+                  WebLibras
+                </span>
               </button>
 
               <button
@@ -145,8 +156,12 @@ export default function AccessibilityButton() {
                   e.currentTarget.style.borderColor = "#e2e8f0";
                 }}
               >
-                <Settings style={{ width: "40px", height: "40px", marginBottom: "12px", color: "#3b82f6" }} />
-                <span style={{ fontSize: "15px", fontWeight: "600", color: "#334155" }}>Acessibilidade</span>
+                <Settings
+                  style={{ width: "40px", height: "40px", marginBottom: "12px", color: "#3b82f6" }}
+                />
+                <span style={{ fontSize: "15px", fontWeight: "600", color: "#334155" }}>
+                  Acessibilidade
+                </span>
               </button>
 
               <button
@@ -174,7 +189,9 @@ export default function AccessibilityButton() {
                   e.currentTarget.style.borderColor = "#e2e8f0";
                 }}
               >
-                <Volume2 style={{ width: "40px", height: "40px", marginBottom: "12px", color: "#3b82f6" }} />
+                <Volume2
+                  style={{ width: "40px", height: "40px", marginBottom: "12px", color: "#3b82f6" }}
+                />
                 <span style={{ fontSize: "15px", fontWeight: "600", color: "#334155" }}>Voz</span>
               </button>
 
@@ -203,8 +220,12 @@ export default function AccessibilityButton() {
                   e.currentTarget.style.borderColor = "#e2e8f0";
                 }}
               >
-                <Languages style={{ width: "40px", height: "40px", marginBottom: "12px", color: "#3b82f6" }} />
-                <span style={{ fontSize: "15px", fontWeight: "600", color: "#334155" }}>Tradução</span>
+                <Languages
+                  style={{ width: "40px", height: "40px", marginBottom: "12px", color: "#3b82f6" }}
+                />
+                <span style={{ fontSize: "15px", fontWeight: "600", color: "#334155" }}>
+                  Tradução
+                </span>
               </button>
             </div>
 

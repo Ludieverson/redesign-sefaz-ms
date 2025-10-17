@@ -107,7 +107,13 @@ export default function Home() {
 
   const utilityIcons: Record<string, JSX.Element | undefined> = {
     Acessibilidade: (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" aria-hidden="true" className="h-7 w-7">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 16 16"
+        fill="none"
+        aria-hidden="true"
+        className="h-7 w-7"
+      >
         <path
           d="M8 1.5C4.40625 1.5 1.5 4.4375 1.5 8C1.5 11.5938 4.40625 14.5 8 14.5C11.5625 14.5 14.5 11.5938 14.5 8C14.5 4.4375 11.5625 1.5 8 1.5ZM8 0.25C12.25 0.25 15.75 3.75 15.75 8C15.75 12.2812 12.25 15.75 8 15.75C3.71875 15.75 0.25 12.2812 0.25 8C0.25 3.75 3.71875 0.25 8 0.25ZM8 2C11.3125 2 14 4.6875 14 8C14 11.3438 11.3125 14 8 14C4.65625 14 2 11.3438 2 8C2 4.6875 4.65625 2 8 2ZM8 3.375C7.375 3.375 6.875 3.90625 6.875 4.5C6.875 5.125 7.375 5.625 8 5.625C8.59375 5.625 9.125 5.125 9.125 4.5C9.125 3.90625 8.59375 3.375 8 3.375ZM11.6562 6.46875C11.9375 6.375 12.0938 6.125 12.0312 5.84375C11.9688 5.59375 11.6875 5.40625 11.4375 5.46875C8.40625 6.1875 7.5625 6.1875 4.53125 5.46875C4.28125 5.40625 4 5.59375 3.9375 5.84375C3.875 6.125 4.03125 6.375 4.3125 6.46875C5.1875 6.65625 6.03125 6.84375 6.875 6.9375C6.84375 10.0938 6.5 10.7812 6.09375 11.8125C5.96875 12.0938 6.125 12.4375 6.40625 12.5312C6.6875 12.6562 7.03125 12.5 7.125 12.2188C7.40625 11.5312 7.65625 10.9375 7.84375 9.75H8.125C8.3125 10.9375 8.5625 11.5312 8.84375 12.2188C8.9375 12.5 9.28125 12.6562 9.5625 12.5312C9.84375 12.4375 10 12.0938 9.875 11.8125C9.46875 10.7812 9.125 10.0938 9.09375 6.9375C9.9375 6.84375 10.7812 6.65625 11.6562 6.46875Z"
           fill="#004F9F"
@@ -187,14 +193,30 @@ export default function Home() {
     "Fale Conosco",
   ];
 
-    const services: Array<{ title: string; href: string; icon: LucideIcon }> = [
+  const services: Array<{ title: string; href: string; icon: LucideIcon }> = [
     { title: "IPVA - Consulta de Débito", href: "#", icon: Car },
-    { title: "ICMS - isenção para contas de energia elétrica e telecom", href: "#", icon: FileText },
-    { title: "Análise das obrigações socioeconômicas pactuadas em termos", href: "#", icon: ClipboardList },
+    {
+      title: "ICMS - isenção para contas de energia elétrica e telecom",
+      href: "#",
+      icon: FileText,
+    },
+    {
+      title: "Análise das obrigações socioeconômicas pactuadas em termos",
+      href: "#",
+      icon: ClipboardList,
+    },
     { title: "Consulta tributária", href: "#", icon: Search },
-    { title: "Requerimento de incentivos fiscais com compromisso de operação", href: "#", icon: ClipboardCheck },
+    {
+      title: "Requerimento de incentivos fiscais com compromisso de operação",
+      href: "#",
+      icon: ClipboardCheck,
+    },
     { title: "Fale conosco", href: "#", icon: MessageCircle },
-    { title: "Cancelamento ou suspensão de inscrição estadual de terceiros", href: "#", icon: UserMinus },
+    {
+      title: "Cancelamento ou suspensão de inscrição estadual de terceiros",
+      href: "#",
+      icon: UserMinus,
+    },
     { title: "Exclusão ou inclusão de pessoa no quadro societário", href: "#", icon: UserPlus },
     { title: "Emissão de certidões negativas", href: "#", icon: FileMinus },
     { title: "Parcelamento de débitos tributários", href: "#", icon: Wallet },
@@ -204,12 +226,14 @@ export default function Home() {
     {
       title: "Mulher trabalhadora, chefe de família",
       href: "#",
-      image: "https://www.pge.ms.gov.br/wp-content/themes/new-ms/assets/img/banner/campanha-mulher-trabalhadora.jpg",
+      image:
+        "https://www.pge.ms.gov.br/wp-content/themes/new-ms/assets/img/banner/campanha-mulher-trabalhadora.jpg",
     },
     {
       title: "Portal Único MS.GOV.BR",
       href: "#",
-      image: "https://www.pge.ms.gov.br/wp-content/themes/new-ms/assets/img/Banner-Cartas-de-Servicos.png",
+      image:
+        "https://www.pge.ms.gov.br/wp-content/themes/new-ms/assets/img/Banner-Cartas-de-Servicos.png",
     },
     {
       title: "Protege - Por elas, proteção de todos os lados",
@@ -263,7 +287,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-surface-muted text-text-body">
-        <header className="border-b border-border-muted">
+      <header className="border-b border-border-muted">
         <div className="bg-surface text-xs uppercase tracking-wide text-text-body">
           <div className="mx-auto flex h-10 max-w-[1300px] items-center justify-between px-md">
             <div className="flex items-center gap-sm">
@@ -275,7 +299,10 @@ export default function Home() {
                       {link.label}
                     </a>
                     {index < quickLinks.length - 1 ? (
-                      <span className="hidden h-3 w-px bg-border-subtle md:mx-2xs md:block" aria-hidden />
+                      <span
+                        className="hidden h-3 w-px bg-border-subtle md:mx-2xs md:block"
+                        aria-hidden
+                      />
                     ) : null}
                   </Fragment>
                 ))}
@@ -295,7 +322,9 @@ export default function Home() {
                       ) : null}
                       <span>{link.label}</span>
                     </a>
-                    {index < utilityLinks.length - 1 ? <span className="hidden h-4 w-px bg-border-subtle md:block" aria-hidden /> : null}
+                    {index < utilityLinks.length - 1 ? (
+                      <span className="hidden h-4 w-px bg-border-subtle md:block" aria-hidden />
+                    ) : null}
                   </Fragment>
                 );
               })}
@@ -311,7 +340,9 @@ export default function Home() {
                       aria-label={social.label}
                     >
                       {icon ?? (
-                        <span className="text-[0.65rem] font-semibold uppercase">{social.abbr}</span>
+                        <span className="text-[0.65rem] font-semibold uppercase">
+                          {social.abbr}
+                        </span>
                       )}
                       <span className="sr-only">{social.label}</span>
                     </a>
@@ -324,15 +355,15 @@ export default function Home() {
 
         <div className="bg-brand-primary text-white">
           <div className="mx-auto flex max-w-[1300px] flex-col gap-lg px-md py-lg md:flex-row md:items-center md:justify-between">
-              <div className="flex flex-1 flex-col items-center gap-md md:flex-row md:items-start md:gap-md">
-                <Image
-                  src="/ms.webp"
-                  alt="Brasao do Governo de Mato Grosso do Sul"
-                  width={240}
-                  height={240}
-                  priority
-                  style={{ marginTop: -24 }}
-                />
+            <div className="flex flex-1 flex-col items-center gap-md md:flex-row md:items-start md:gap-md">
+              <Image
+                src="/ms.webp"
+                alt="Brasao do Governo de Mato Grosso do Sul"
+                width={240}
+                height={240}
+                priority
+                style={{ marginTop: -24 }}
+              />
               <div className="h-16 w-px bg-white/15" aria-hidden />
               <div className="flex flex-col items-center md:items-start">
                 <span className="text-lg font-semibold uppercase tracking-wide">SEFAZ</span>
@@ -376,15 +407,18 @@ export default function Home() {
           <div className="mx-auto max-w-[1300px] px-md">
             <ul className="flex w-full items-center justify-between text-[0.95rem] font-bold uppercase tracking-wide text-text-strong">
               {primaryNav.map((item, index) => (
-                <li
-                  key={item}
-                  className={`flex items-center ${index > 0 ? "pl-md" : ""}`}
-                >
-                  <a href="#" className="block whitespace-nowrap py-3 text-text-strong transition-colors hover:text-[#004F9F]">
+                <li key={item} className={`flex items-center ${index > 0 ? "pl-md" : ""}`}>
+                  <a
+                    href="#"
+                    className="block whitespace-nowrap py-3 text-text-strong transition-colors hover:text-[#004F9F]"
+                  >
                     {item}
                   </a>
                   {index < primaryNav.length - 1 ? (
-                    <span className="hidden h-3 w-px bg-border-subtle md:ml-xl md:block" aria-hidden />
+                    <span
+                      className="hidden h-3 w-px bg-border-subtle md:ml-xl md:block"
+                      aria-hidden
+                    />
                   ) : null}
                 </li>
               ))}
@@ -397,57 +431,61 @@ export default function Home() {
         <div className="mx-auto w-full max-w-[1300px] px-md">
           <section className="flex flex-col gap-lg pt-0">
             <div className="flex flex-col gap-[0.375rem]">
-              <h1 className="text-xl font-semibold text-text-heading md:text-[1.5rem]">Serviços em destaque</h1>
+              <h1 className="text-xl font-semibold text-text-heading md:text-[1.5rem]">
+                Serviços em destaque
+              </h1>
               <p className="text-sm text-text-body/90">
                 Acesse rapidamente os principais serviços oferecidos pela Secretaria de Fazenda.
               </p>
             </div>
-          <div className="mt-1 grid gap-md sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-            {services.map(({ title, href, icon: Icon }) => (
-              <a
-                key={title}
-                href={href}
-                className="group flex min-h-[200px] flex-col justify-between gap-md rounded-card border border-border-muted bg-surface p-lg shadow-sm transition-colors"
-              >
-                <div className="flex flex-1 flex-col">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#e6f2fa] text-[#0F172A]">
-                    <Icon aria-hidden="true" className="size-5" />
+            <div className="mt-1 grid gap-md sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+              {services.map(({ title, href, icon: Icon }) => (
+                <a
+                  key={title}
+                  href={href}
+                  className="group flex min-h-[200px] flex-col justify-between gap-md rounded-card border border-border-muted bg-surface p-lg shadow-sm transition-colors"
+                >
+                  <div className="flex flex-1 flex-col">
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#e6f2fa] text-[#0F172A]">
+                      <Icon aria-hidden="true" className="size-5" />
+                    </span>
+                    <h2
+                      className="mt-4 flex-1 text-[15px] font-semibold leading-tight text-[#0F172A]"
+                      style={{
+                        display: "-webkit-box",
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: "vertical",
+                        overflow: "hidden",
+                      }}
+                    >
+                      {title}
+                    </h2>
+                  </div>
+                  <span className="mt-1 inline-flex items-center gap-2 text-sm font-medium text-[#0F172A] underline decoration-slate-300/70 decoration-[1px] underline-offset-[6px] dark:text-slate-100 group-hover:decoration-[#004F9F]/70">
+                    Acessar serviço
+                    <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={1.6} />
                   </span>
-                  <h2
-                    className="mt-4 flex-1 text-[15px] font-semibold leading-tight text-[#0F172A]"
-                    style={{
-                      display: "-webkit-box",
-                      WebkitLineClamp: 3,
-                      WebkitBoxOrient: "vertical",
-                      overflow: "hidden",
-                    }}
-                  >
-                    {title}
-                  </h2>
-                </div>
-                <span className="mt-1 inline-flex items-center gap-2 text-sm font-medium text-[#0F172A] underline decoration-slate-300/70 decoration-[1px] underline-offset-[6px] dark:text-slate-100 group-hover:decoration-[#004F9F]/70">
-                  Acessar serviço
-                  <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={1.6} />
-                </span>
+                </a>
+              ))}
+            </div>
+            <div className="mt-2 flex justify-center pt-xs pb-[15px]">
+              <a
+                href="#"
+                className="inline-flex items-center gap-3 rounded-full bg-[#004F9F] px-7 py-3.5 text-base font-semibold text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#004F9F]"
+              >
+                <span>Ver todos os serviços</span>
+                <ArrowUpRight aria-hidden="true" className="h-5 w-5" strokeWidth={1.8} />
               </a>
-            ))}
-          </div>
-          <div className="mt-2 flex justify-center pt-xs pb-[15px]">
-            <a
-              href="#"
-              className="inline-flex items-center gap-3 rounded-full bg-[#004F9F] px-7 py-3.5 text-base font-semibold text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#004F9F]"
-            >
-              <span>Ver todos os serviços</span>
-              <ArrowUpRight aria-hidden="true" className="h-5 w-5" strokeWidth={1.8} />
-            </a>
-          </div>
+            </div>
           </section>
         </div>
 
         <section className="w-full bg-white py-10">
           <div className="mx-auto flex w-full max-w-[1300px] flex-col gap-6 px-md">
             <header className="flex flex-col gap-[0.375rem]">
-              <h2 className="text-xl font-semibold text-text-heading md:text-[1.5rem]">Campanhas em destaque</h2>
+              <h2 className="text-xl font-semibold text-text-heading md:text-[1.5rem]">
+                Campanhas em destaque
+              </h2>
               <p className="text-sm text-text-body/90">
                 Iniciativas do Governo de Mato Grosso do Sul que merecem a sua atenção.
               </p>
@@ -459,7 +497,9 @@ export default function Home() {
         <div className="mx-auto w-full max-w-[1300px] px-md">
           <section className="mt-12 flex flex-col gap-5">
             <header className="flex flex-col gap-[0.375rem]">
-              <h2 className="text-xl font-semibold text-text-heading md:text-[1.5rem]">Destaques</h2>
+              <h2 className="text-xl font-semibold text-text-heading md:text-[1.5rem]">
+                Destaques
+              </h2>
               <p className="text-sm text-text-body/90">
                 Iniciativas do Governo de Mato Grosso do Sul que merecem a sua atenção.
               </p>
@@ -500,6 +540,3 @@ export default function Home() {
     </div>
   );
 }
-
-
-
