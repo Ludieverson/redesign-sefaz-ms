@@ -94,12 +94,36 @@ function BannerCarousel({
 
 export default function Home() {
   const quickLinks = [
-    { label: "Conteúdo", href: "#" },
-    { label: "Menu", href: "#" },
-    { label: "Busca", href: "#" },
-    { label: "Ouvidoria/SIC", href: "#" },
-    { label: "Transparência", href: "#" },
+    { label: "Conteúdo", href: "#", icon: null },
+    { label: "Menu", href: "#", icon: null },
+    { label: "Busca", href: "#", icon: null },
+    { label: "Ouvidoria/SIC", href: "#", icon: "ouvidoria" },
+    { label: "Transparência", href: "#", icon: "transparencia" },
   ];
+
+  const quickLinkIcons: Record<string, ReactElement> = {
+    ouvidoria: (
+      <svg
+        className="h-3 w-3"
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5zM8 11a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1z" />
+        <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zM1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8z" />
+      </svg>
+    ),
+    transparencia: (
+      <svg
+        className="h-3 w-3"
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z" />
+      </svg>
+    ),
+  };
 
   const utilityLinks = [{ label: "Siga @GovernoMS", href: "#" }];
 
@@ -274,19 +298,27 @@ export default function Home() {
             <div className="flex items-center gap-sm">
               <span className="font-semibold text-text-subtle">Ir para:</span>
               <nav className="flex items-center text-xs">
-                {quickLinks.map((link, index) => (
-                  <Fragment key={link.label}>
-                    <a href={link.href} className="px-xs hover:text-text-heading first:pl-0">
-                      {link.label}
-                    </a>
-                    {index < quickLinks.length - 1 ? (
-                      <span
-                        className="hidden h-3 w-px bg-border-subtle md:mx-2xs md:block"
-                        aria-hidden
-                      />
-                    ) : null}
-                  </Fragment>
-                ))}
+                {quickLinks.map((link, index) => {
+                  const icon = link.icon ? quickLinkIcons[link.icon] : null;
+
+                  return (
+                    <Fragment key={link.label}>
+                      <a
+                        href={link.href}
+                        className="flex items-center gap-1 px-xs hover:text-text-heading first:pl-0"
+                      >
+                        {icon}
+                        {link.label}
+                      </a>
+                      {index < quickLinks.length - 1 ? (
+                        <span
+                          className="hidden h-3 w-px bg-border-subtle md:mx-2xs md:block"
+                          aria-hidden
+                        />
+                      ) : null}
+                    </Fragment>
+                  );
+                })}
               </nav>
             </div>
             <div className="hidden items-center gap-md md:flex">
