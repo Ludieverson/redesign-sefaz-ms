@@ -101,27 +101,7 @@ export default function Home() {
     { label: "Transparência", href: "#" },
   ];
 
-  const utilityLinks = [
-    { label: "Acessibilidade", href: "#" },
-    { label: "Siga @GovernoMS", href: "#" },
-  ];
-
-  const utilityIcons: Record<string, ReactElement | undefined> = {
-    Acessibilidade: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 16 16"
-        fill="none"
-        aria-hidden="true"
-        className="h-7 w-7"
-      >
-        <path
-          d="M8 1.5C4.40625 1.5 1.5 4.4375 1.5 8C1.5 11.5938 4.40625 14.5 8 14.5C11.5625 14.5 14.5 11.5938 14.5 8C14.5 4.4375 11.5625 1.5 8 1.5ZM8 0.25C12.25 0.25 15.75 3.75 15.75 8C15.75 12.2812 12.25 15.75 8 15.75C3.71875 15.75 0.25 12.2812 0.25 8C0.25 3.75 3.71875 0.25 8 0.25ZM8 2C11.3125 2 14 4.6875 14 8C14 11.3438 11.3125 14 8 14C4.65625 14 2 11.3438 2 8C2 4.6875 4.65625 2 8 2ZM8 3.375C7.375 3.375 6.875 3.90625 6.875 4.5C6.875 5.125 7.375 5.625 8 5.625C8.59375 5.625 9.125 5.125 9.125 4.5C9.125 3.90625 8.59375 3.375 8 3.375ZM11.6562 6.46875C11.9375 6.375 12.0938 6.125 12.0312 5.84375C11.9688 5.59375 11.6875 5.40625 11.4375 5.46875C8.40625 6.1875 7.5625 6.1875 4.53125 5.46875C4.28125 5.40625 4 5.59375 3.9375 5.84375C3.875 6.125 4.03125 6.375 4.3125 6.46875C5.1875 6.65625 6.03125 6.84375 6.875 6.9375C6.84375 10.0938 6.5 10.7812 6.09375 11.8125C5.96875 12.0938 6.125 12.4375 6.40625 12.5312C6.6875 12.6562 7.03125 12.5 7.125 12.2188C7.40625 11.5312 7.65625 10.9375 7.84375 9.75H8.125C8.3125 10.9375 8.5625 11.5312 8.84375 12.2188C8.9375 12.5 9.28125 12.6562 9.5625 12.5312C9.84375 12.4375 10 12.0938 9.875 11.8125C9.46875 10.7812 9.125 10.0938 9.09375 6.9375C9.9375 6.84375 10.7812 6.65625 11.6562 6.46875Z"
-          fill="#004F9F"
-        />
-      </svg>
-    ),
-  };
+  const utilityLinks = [{ label: "Siga @GovernoMS", href: "#" }];
 
   const socialLinks = [
     { label: "Facebook", abbr: "fb", href: "#" },
@@ -310,25 +290,16 @@ export default function Home() {
               </nav>
             </div>
             <div className="hidden items-center gap-md md:flex">
-              {utilityLinks.map((link, index) => {
-                const icon = utilityIcons[link.label];
-
-                return (
-                  <Fragment key={link.label}>
-                    <a href={link.href} className="flex items-center gap-2 hover:text-text-heading">
-                      {icon ? (
-                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/20">
-                          {icon}
-                        </span>
-                      ) : null}
-                      <span>{link.label}</span>
-                    </a>
-                    {index < utilityLinks.length - 1 ? (
-                      <span className="hidden h-4 w-px bg-border-subtle md:block" aria-hidden />
-                    ) : null}
-                  </Fragment>
-                );
-              })}
+              {utilityLinks.map((link, index) => (
+                <Fragment key={link.label}>
+                  <a href={link.href} className="flex items-center gap-2 hover:text-text-heading">
+                    <span>{link.label}</span>
+                  </a>
+                  {index < utilityLinks.length - 1 ? (
+                    <span className="hidden h-4 w-px bg-border-subtle md:block" aria-hidden />
+                  ) : null}
+                </Fragment>
+              ))}
               <div className="flex items-center gap-xs">
                 {socialLinks.map((social) => {
                   const icon = socialIcons[social.abbr];
